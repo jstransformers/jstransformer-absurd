@@ -1,6 +1,6 @@
 {
   "name": "jstransformer-absurd",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "AbsurdJS support for JS Transformers.",
   "scripts": {
     "lint": "jshint index.js && jscs index.js --reporter inline",
