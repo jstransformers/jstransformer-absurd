@@ -50,7 +50,17 @@ test('should render CSS with minify true, async/promise', function(done) {
   });
 });
 
-test('should render file from a given filepath', function(done) {
+test('should render CSS file from a given filepath', function(done) {
+  var fixture = './test/advanced.css';
+  var options = {minify: true};
+  var actual = transform.renderFile(fixture, options);
+  var expected = fs.readFileSync('./test/advanced.min.css', 'utf8');
+
+  test.equal(actual.body, expected);
+  done();
+});
+
+test('should render JS file from a given filepath', function(done) {
   var fixture = './test/advanced.js';
   var options = {minify: false};
   var promise = transform.renderFileAsync(fixture, options);
