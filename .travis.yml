@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 sudo: false
 language: node_js
 node_js:
@@ -6,3 +7,21 @@ node_js:
   - "0.12"
 script: "npm run-script test-travis"
 after_script: "npm install coveralls && cat ./coverage/lcov.info | coveralls"
+=======
+language: node_js
+sudo: false
+
+node_js:
+  - "0.10"
+  - "0.12"
+  - "iojs"
+
+after_success:
+  - npm run coverage
+  - npm i coveralls
+  - cat ./coverage/lcov.info | coveralls
+
+notifications:
+  email:
+    on_success: never
+>>>>>>> cf222d67208659145e6ed0b4e9d297ea88a85b33

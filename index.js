@@ -1,48 +1,66 @@
-/**
- * jstransformer-absurd <https://github.com/tunnckoCore/jstransformer-absurd>
- *
- * Copyright (c) 2015 Charlike Mike Reagent, contributors.
- * Released under the MIT license.
- */
-
 'use strict';
 
 var fs = require('fs');
 var path = require('path');
-var absurd = require('absurd')();
-var transformer = require('jstransformer');
-var postcss = transformer(require('jstransformer-postcss'));
-var nested = require('postcss-nested');
+var Absurd = require('absurd');
+var Promise = require('promise');
+var merge = require('merge');
 
 exports.name = 'absurd';
-exports.inputFormats = ['absurd', 'absurdjs', 'js'];
-exports.outputFormat = 'css';
+exports.inputFormats = ['absurd', 'absurdjs'];
+// Absurd can output results in multiple formats. We output with "absurd"
+// to refrain from making an asumption on how it will be used.
+exports.outputFormat = 'absurd';
 
-exports.render = function _render(api, options) {
-  var isFunction = typeof api === 'function';
+/**
+ * Build an Absurd object from the given input, options and locals.
+ */
+var constructAbsurd = function (input, options, locals) {
+  // Build a base Absurd object.
+  var absurd = Absurd();
 
-  if (!isFunction && typeof api !== 'object') {
-    throw new TypeError('jstransformer-absurd expects object or function');
+  // Retrieve the options.
+  options = merge(options || {}, locals || {});
+
+  // Check if we are to morph the object.
+  if (options.morph) {
+    absurd.morph(options.morph);
   }
-  if (isFunction) {
-    api = api(absurd, options);
+
+  // Process the input for the object.
+  if (typeof input == 'string' || input instanceof String) {
+    try {
+      var api = JSON.parse(input);
+      absurd.add(api);
+    }
+    catch (e) {
+      // It is not a JSON object, perhaps it's CSS?
+      // TODO: Check if it's valid CSS beforehand?
+      absurd.importCSS(input);
+    }
+  }
+  else {
+    // TODO: Any other ways we could process the input?
+    // A module.export JavaScript file?
+    absurd.add(input);
   }
 
-  // kinda weird, lol?
-  return api.compile(function() {}, options);
+  return absurd;
 };
 
-exports.renderFile = function _renderFile(filepath, options) {
-  var fn = null;
-  try {
-    fn = require(path.resolve(filepath));
-  } catch(err) {
-    if (err.message.indexOf('Unexpected token') === -1) {
-      throw err;
-    }
-    var data = JSON.parse(postcss.renderFile(filepath, options, [nested]).body);
+exports.render = function _render(input, options, locals) {
+  return constructAbsurd(input, options, locals).compile(options);
+};
 
-    fn = api.importCSS(data.css);
-  }
-  return exports.render(fn, options);
+exports.renderAsync = function _renderAsync(input, options, locals) {
+  return new Promise(function (fulfill, reject) {
+    constructAbsurd(input, options, locals).compile(options, function (err, result) {
+      if (err) {
+        reject(err);
+      }
+      else {
+        fulfill(result);
+      }
+    });
+  });
 };
