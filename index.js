@@ -1,7 +1,5 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
 var Absurd = require('absurd');
 var Promise = require('promise');
 var merge = require('merge');
@@ -35,13 +33,12 @@ var constructAbsurd = function (input, options, locals) {
     }
     catch (e) {
       // It is not a JSON object, perhaps it's CSS?
-      // TODO: Check if it's valid CSS beforehand?
+      // TODO: Check if it's valid CSS beforehand.
       absurd.importCSS(input);
     }
   }
   else {
     // TODO: Any other ways we could process the input?
-    // A module.export JavaScript file?
     absurd.add(input);
   }
 

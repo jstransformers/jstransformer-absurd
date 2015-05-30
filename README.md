@@ -13,16 +13,14 @@
 ## API
 
 ```js
-var absurd = require('jstransformer')(require('jstransformer-foo'))
+var absurd = require('jstransformer')(require('jstransformer-absurd'))
 
 var input = {
   h1: "Hello <% name %>!"
 };
-
 var options = {
   "morph": "html"
 };
-
 var locals = {
   "name": "World"
 };
