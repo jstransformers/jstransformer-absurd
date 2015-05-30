@@ -1,16 +1,16 @@
-<<<<<<< HEAD
-
-
-## v0.1.0 / April 11, 2015
-- update tests
-- run update
-
-## v0.0.0 / April 11, 2015
-- first commits
-=======
 # Changelog
 
-## v0.0.1: 2015-xx-xx
+## v0.2.0: May 29, 2015
+
+- Updated Boilerplate
+- Added test-jstransformer
+- Cleaned up API
+
+## v0.1.0: April 11, 2015
+
+- Update tests
+- Run update
+
+## v0.0.0: April 11, 2015
 
 - Initial release
->>>>>>> cf222d67208659145e6ed0b4e9d297ea88a85b33
