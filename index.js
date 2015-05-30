@@ -11,9 +11,9 @@ exports.inputFormats = ['absurd', 'absurdjs'];
 exports.outputFormat = 'absurd';
 
 /**
- * Build an Absurd object from the given input, options and locals.
+ * Given the options and locals, will construct an Absurd object.
  */
-var constructAbsurd = function (input, options, locals) {
+function constructAbsurd(options, locals) {
   // Build a base Absurd object.
   var absurd = Absurd();
 
@@ -25,33 +25,70 @@ var constructAbsurd = function (input, options, locals) {
     absurd.morph(options.morph);
   }
 
-  // Process the input for the object.
-  if (typeof input == 'string' || input instanceof String) {
-    try {
-      var api = JSON.parse(input);
-      absurd.add(api);
-    }
-    catch (e) {
-      // It is not a JSON object, perhaps it's CSS?
-      // TODO: Check if it's valid CSS beforehand.
+  return absurd;
+};
+
+/**
+ * Build an Absurd object from the given input, options and locals.
+ */
+function getAbsurdFromRender (input, options, locals) {
+  var absurd = constructAbsurd(options, locals);
+
+  switch (options.type) {
+    case 'javascript':
+      // TODO: Enable rendering Absurd JavaScript with .render(). Perhaps by
+      // using eval() to get the API module.exports object?
+      absurd.raw("Using Absurd's .render() with JavaScript is disabled.");
+      break;
+    case 'yaml':
+      var yaml = require('js-yaml');
+      absurd.add(yaml.safeLoad(input));
+      break;
+    case 'css':
       absurd.importCSS(input);
-    }
-  }
-  else {
-    // TODO: Any other ways we could process the input?
-    absurd.add(input);
+      break;
+    case 'json':
+    default:
+      absurd.add(JSON.parse(input));
+      break;
   }
 
   return absurd;
 };
 
+/**
+ * Construct an Absurd object from a filename, options and locals.
+ */
+function getAbsurdFromFile(filename, options, locals) {
+  var absurd = constructAbsurd(options, locals);
+  absurd.import(filename);
+  return absurd;
+}
+
 exports.render = function _render(input, options, locals) {
-  return constructAbsurd(input, options, locals).compile(options);
+  return getAbsurdFromRender(input, options, locals).compile(options);
 };
 
 exports.renderAsync = function _renderAsync(input, options, locals) {
   return new Promise(function (fulfill, reject) {
-    constructAbsurd(input, options, locals).compile(options, function (err, result) {
+    getAbsurdFromRender(input, options, locals).compile(options, function (err, result) {
+      if (err) {
+        reject(err);
+      }
+      else {
+        fulfill(result);
+      }
+    });
+  });
+};
+
+exports.renderFile = function _renderFile(input, options, locals) {
+  return getAbsurdFromFile(input, options, locals).compile(options);
+};
+
+exports.renderFileAsync = function _renderFileAsync(input, options, locals) {
+  return new Promise(function (fulfill, reject) {
+    getAbsurdFromFile(input, options, locals).compile(options, function (err, result) {
       if (err) {
         reject(err);
       }

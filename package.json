@@ -29,5 +29,12 @@
     "email": "mameto_100@mail.bg",
     "url": "https://github.com/tunnckoCore"
   },
+<<<<<<< HEAD
+=======
+  "author": {
+    "name": "JSTransformers Team",
+    "url": "http://github.com/orgs/jstransformers/people"
+  },
+>>>>>>> 2695ec9... Fix the copyright to reference the JSTransformers Team
   "license": "MIT"
 }
