@@ -1,0 +1,9 @@
+{
+  ".content": {
+    "padding": 0,
+    "fs": "20px",
+    "p": {
+      "line-height": "30px"
+    }
+  }
+}
