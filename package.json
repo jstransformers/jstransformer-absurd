@@ -1,49 +1,40 @@
 {
   "name": "jstransformer-absurd",
-  "version": "0.1.0",
-  "description": "AbsurdJS support for JS Transformers.",
+  "version": "0.2.0",
+  "description": "AbsurdJS support for JSTransformers.",
+  "keywords": [
+    "jstransformer"
+  ],
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "absurd": "^0.3.4",
+    "merge": "^1.2.0",
+    "promise": "^7.0.1"
+  },
+  "devDependencies": {
+    "test-jstransformer": "^1.0.0"
+  },
   "scripts": {
-    "lint": "jshint index.js && jscs index.js --reporter inline",
-    "test": "node test",
-    "test-cov": "istanbul cover test",
-    "test-travis": "istanbul cover test --report lcovonly"
+    "test": "test-jstransformer",
+    "coverage": "test-jstransformer coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jstransformers/jstransformer-absurd.git"
   },
   "author": {
     "name": "Charlike Mike Reagent",
     "email": "mameto_100@mail.bg",
     "url": "https://github.com/tunnckoCore"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jstransformers/jstransformer-absurd.git"
+<<<<<<< HEAD
+=======
+  "author": {
+    "name": "JSTransformers Team",
+    "url": "http://github.com/orgs/jstransformers/people"
   },
-  "keywords": [
-    "absurd",
-    "absurdjs",
-    "css",
-    "engine",
-    "html",
-    "jstransformer",
-    "post",
-    "pre",
-    "preprocessor",
-    "processor",
-    "template",
-    "transform"
-  ],
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jstransformers/jstransformer-absurd/blob/master/LICENSE.md"
-  },
-  "dependencies": {
-    "absurd": "~0.3.4",
-    "jstransformer": "~0.0.0",
-    "jstransformer-postcss": "^0.2.1",
-    "postcss": "~4.1.4",
-    "postcss-nested": "~0.2.2"
-  },
-  "devDependencies": {
-    "assertit": "^0.1.0",
-    "istanbul-harmony": "~0.3.1"
-  }
+>>>>>>> 2695ec9... Fix the copyright to reference the JSTransformers Team
+  "license": "MIT"
 }
