@@ -15,19 +15,17 @@
   ],
   "devDependencies": {
     "js-yaml": "^3.4.0",
-    "test-jstransformer": "^1.0.0"
+    "test-jstransformer": "^1.0.0",
+    "xo": "^0.15.1"
   },
   "scripts": {
-<<<<<<< HEAD
     "test": "test-jstransformer",
-    "coverage": "test-jstransformer coverage"
-=======
     "coverage": "test-jstransformer coverage",
-    "test": "test-jstransformer"
+    "test": "test-jstransformer",
+    "posttest": "xo --space --no-semicolon index.js"
   },
   "engines": {
     "node": ">=4"
->>>>>>> Remove Node.js 0.10 and 0.12 support
   },
   "repository": {
     "type": "git",
