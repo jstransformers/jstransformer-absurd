@@ -14,7 +14,7 @@
     "index.js"
   ],
   "devDependencies": {
-    "js-yaml": "^3.4.0",
+    "js-yaml": "^3.5.4",
     "test-jstransformer": "^1.0.0"
   },
   "scripts": {
