@@ -1,11 +1,10 @@
 {
   "dependencies": {
-    "absurd": "^0.3.4",
-    "merge": "^1.2.0",
-    "promise": "^7.0.1"
+    "absurd": "^0.3.8",
+    "merge": "^1.2.0"
   },
   "name": "jstransformer-absurd",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AbsurdJS support for JSTransformers.",
   "keywords": [
     "jstransformer"
@@ -14,12 +13,11 @@
     "index.js"
   ],
   "devDependencies": {
-    "js-yaml": "^3.4.0",
+    "js-yaml": "^3.7.0",
     "test-jstransformer": "^1.0.0",
     "xo": "^0.17.1"
   },
   "scripts": {
-    "test": "test-jstransformer",
     "coverage": "test-jstransformer coverage",
     "test": "test-jstransformer",
     "posttest": "xo --space --no-semicolon index.js"

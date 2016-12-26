@@ -1,7 +1,6 @@
 'use strict'
 
 var initialAbsurd = require('absurd')
-var Promise = require('promise')
 var merge = require('merge')
 
 exports.name = 'absurd'

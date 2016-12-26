@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.2.1: 2016-12-23
+
+- Updated Boilerplate
+- Updated to `absurd@^0.3.8`
+
 ## v0.2.0: May 29, 2015
 
 - Updated Boilerplate
