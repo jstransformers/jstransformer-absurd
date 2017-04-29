@@ -1,5 +1,7 @@
 # jstransformer-absurd
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jstransformers/jstransformer-absurd.svg)](https://greenkeeper.io/)
+
 [Absurd](http://absurdjs.com) support for [JSTransformers](http://github.com/jstransformers).
 
 [![Build Status](https://img.shields.io/travis/jstransformers/jstransformer-absurd/master.svg)](https://travis-ci.org/jstransformers/jstransformer-absurd)
