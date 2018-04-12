@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "absurd": "^0.3.8",
+    "absurd": "^0.3.9",
     "merge": "^1.2.0"
   },
   "name": "jstransformer-absurd",
