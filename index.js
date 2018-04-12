@@ -1,7 +1,7 @@
 'use strict'
 
-var initialAbsurd = require('absurd')
-var merge = require('merge')
+const initialAbsurd = require('absurd')
+const merge = require('merge')
 
 exports.name = 'absurd'
 exports.inputFormats = ['absurd', 'absurdjs']
@@ -14,7 +14,7 @@ exports.outputFormat = 'absurd'
  */
 function constructAbsurd(options, locals) {
   // Build a base Absurd object.
-  var absurd = initialAbsurd()
+  const absurd = initialAbsurd()
 
   // Retrieve the options.
   options = merge(options || {}, locals || {})
@@ -31,7 +31,7 @@ function constructAbsurd(options, locals) {
  * Build an Absurd object from the given input, options and locals.
  */
 function getAbsurdFromRender(input, options, locals) {
-  var absurd = constructAbsurd(options, locals)
+  const absurd = constructAbsurd(options, locals)
 
   switch (options.type) {
     case 'javascript':
@@ -40,8 +40,7 @@ function getAbsurdFromRender(input, options, locals) {
       absurd.raw('Using Absurd\'s .render() with JavaScript is disabled.')
       break
     case 'yaml':
-      var yaml = require('js-yaml')
-      absurd.add(yaml.safeLoad(input))
+      absurd.add(require('js-yaml').safeLoad(input))
       break
     case 'css':
       absurd.importCSS(input)
@@ -59,7 +58,7 @@ function getAbsurdFromRender(input, options, locals) {
  * Construct an Absurd object from a filename, options and locals.
  */
 function getAbsurdFromFile(filename, options, locals) {
-  var absurd = constructAbsurd(options, locals)
+  const absurd = constructAbsurd(options, locals)
   absurd.import(filename)
   return absurd
 }
@@ -69,8 +68,8 @@ exports.render = function (input, options, locals) {
 }
 
 exports.renderAsync = function (input, options, locals) {
-  return new Promise(function (resolve, reject) {
-    getAbsurdFromRender(input, options, locals).compile(options, function (err, result) {
+  return new Promise((resolve, reject) => {
+    getAbsurdFromRender(input, options, locals).compile(options, (err, result) => {
       if (err) {
         reject(err)
       } else {
@@ -85,8 +84,8 @@ exports.renderFile = function (input, options, locals) {
 }
 
 exports.renderFileAsync = function (input, options, locals) {
-  return new Promise(function (resolve, reject) {
-    getAbsurdFromFile(input, options, locals).compile(options, function (err, result) {
+  return new Promise((resolve, reject) => {
+    getAbsurdFromFile(input, options, locals).compile(options, (err, result) => {
       if (err) {
         reject(err)
       } else {
